@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <p>Welcome to dashboard <span style="color: red; background-color:black;"> {{ request.user.username}}</span></p>
+    <hr>
+    <a href="/articles/newArticle" type="button" class="btn btn-success" >Add New Article </a> 
+    {% if articles %}  <br>
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Author</th>
+            <th scope="col">Title</th>
+            <th scope="col">Created Date</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for article in articles  %}
+          <tr>
+              
+              <th scope="row">{{article.id}}</th>
+              <td><a href="/articles/detailArticle/{{article.id}}">{{article.title}}</a></td>
+              <td>{{article.author.username}}</td>
+              <td>{{article.created_dat}}</td>
+              <td><a href="/articles/deleteArticle/{{article.id}}" type="button" class="btn btn-danger">Delete Article</a> </td>
+              <td><a href="/articles/updateArticle/{{article.id}}" type="button" class="btn btn-warning">Update Article</a></td>
+           
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %} <br>
+     <h2 class="alert alert-warning"> Lütfen Makale Paylaşımı Yapınız!</h2>
+    {% endif %}
+    
+    <hr>
+{% endblock body %}

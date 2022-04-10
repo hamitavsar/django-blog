@@ -1,0 +1,16 @@
+    {% extends "layout.html" %}
+    {% block body %}
+    
+    <h4> You are here: Page About</h4>
+
+<p> Hello My friend! my name is {{context.0}}. I'm {{context.1}} years old and Im student to {{context.2}}. I wanna be {{context.3}}. Thank you for listen to me
+
+</p>
+
+    <ul>
+    {% for contexts in context  %}
+        <li> {{contexts}}</li>
+    {% endfor %}
+    {% endblock body %}
+    </ul>
+

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+ 
+<div class="container">
+  <!-- Content here -->
+<!-- enctype="multipart/form-data" Eklemek zorundayız aksi halde request.Files boş olacaktır-->
+ <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+     
+     <div class="form-group">
+        <label for="titleOfArticle">Title</label> <br>
+        <div>
+          
+          {{form.title}}
+        </div> <br>
+        <label for="contentofArticle">Content</label>
+        
+        <div>
+          <!-- CK editorü kullanmak istediğim için contentin hemen üstüne formadi.media oarak tanımladım-->
+           {{ form.media }}
+           {{form.content|safe}} <br>
+           {{form.file_upload}}
+        </div>
+      </div> <br>
+       <button type="submit" class="btn btn-success"> SHARE IT</button>
+ </form>
+</div>
+
+{% endblock body %}

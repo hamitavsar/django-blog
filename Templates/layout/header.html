@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Page</title>
+    <link rel="stylesheet" href="{% static 'layout/css/bootstrap.min.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-top: 0; ">
+        <a class="navbar-brand" href="/"style="margin-left: 0.2%;">Do you have dreams?</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> 
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" >
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
+            <a class="nav-item nav-link" href="#">Products</a>
+            <a class="nav-item nav-link" href="{% url 'article:' %}">Articles</a>
+            
+            
+          </div>
+          
+        </div>
+        <div>
+        <div class="navbar-nav" id="">
+          {% if request.user.is_authenticated %}
+                   <p class="nav-item nav-link" style="color:red;"> {{request.user.username }}</p>
+          <a class="nav-item nav-link " href="{% url 'article:dashBoard' %}">Dashboard</a>
+          <a class="nav-item nav-link " href="{%url 'User:logout' %}"> Log Out</a>
+          {% else %}
+          
+          <a class="nav-item nav-link " href="{% url 'User:register' %}">Register</a>            
+          <a class="nav-item nav-link " href="{% url 'User:login' %}">Login</a>
+          {% endif %}
+        </div>
+      </div> 
+      </nav>
+      {% block layoutBody %}
+      
+      {% endblock layoutBody %}
+      <script src="{% static 'layout/js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'layout/js/bootstrap.bundle.min.js' %}"></script>
+      <!--
+        Code prettif 
+        Bu script ile herhangi bir örnek kod yazdığımızda özel alan oluşturulup daha rahat okunulabilir olmasını sağlıyoruz.
+  
+        Buna code snippet diyoruz.
+  
+        Detaylı bilgi ve kullanım için; 
+        https://github.com/googlearchive/code-prettify
+  
+        Örnek kullanım methodu
+  
+        <pre class="prettyprint">class Voila {
+        public:
+          // Voila
+          static const string VOILA = "Voila";
+              
+          // will not interfere with embedded <a href="#voila2">tags</a>.
+        }</pre>
+      -->
+      <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+</body>
+</html>
